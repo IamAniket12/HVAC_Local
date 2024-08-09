@@ -1,0 +1,211 @@
+Traing usign DQN
+
+Number of bins=5
+
+EXcluded some period where there nothing to learn
+
+
+Trained for 3m time stamps but reward doesn't look convergeed but loss became 0
+
+
+Custom reward Function:-
+
+import numpy as np
+import requests
+
+class BoptestGymEnvCustomReward(BoptestGymEnv):
+    
+    def calculate_objective(self, kpis):
+        """
+        Calculate the objective based on the given KPI values.
+        """
+        cost_tot = kpis.get('cost_tot', 0) or 0
+        pdih_tot = kpis.get('pdih_tot', 0) or 0
+        pele_tot = kpis.get('pele_tot', 0) or 0
+        tdis_tot = kpis.get('tdis_tot', 0) or 0
+        idis_tot = kpis.get('idis_tot', 0) or 0
+
+        objective = (
+            cost_tot +
+            4.25 * (pdih_tot + pele_tot) +
+            0.005 * tdis_tot +
+            0.0001 * idis_tot
+        )
+
+        return objective
+
+    def get_reward(self):
+        try:
+            #use this one running on local server
+            kpis = requests.get(f'{self.url}/kpi').json()['payload']
+
+            #use this when running boptest server
+            # print(self.test_id)
+            # print(self.url)
+            # kpis = requests.get('{0}/kpi/{1}'.format(self.url,self.testid)).json()['payload']
+            # print(kpis)
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching KPIs: {e}")
+            return 0  # In case of error, return zero reward
+
+        current_objective = self.calculate_objective(kpis)
+
+        self.step_count += 1
+
+        if self.objective_integrand is not None:
+            # Calculate the increase in objective
+            increase = current_objective - self.objective_integrand
+            print("current objective",current_objective)
+            print("previos objective",self.objective_integrand)
+            # Update cumulative increase
+            self.cumulative_increase += abs(increase)
+
+            # Calculate average absolute increase up to this point
+            average_increase = self.cumulative_increase / self.step_count
+
+            # Calculate relative performance (closer to 0 is better)
+            relative_performance = increase / (average_increase + self.epsilon)
+
+            # Transform relative performance to a reward between -1 and 1
+            reward = -np.tanh(relative_performance)
+
+            # Add a small positive reward if increase is less than average
+            if abs(increase) < average_increase:
+                reward += 0.1
+
+            # Add a larger reward if we managed to decrease the objective
+            if increase < 0:
+                reward += 0.5
+
+        else:
+            reward = 0
+        print("reward",reward)
+        # Update the stored previous objective
+        self.objective_integrand = current_objective
+
+        return reward
+    # def reset(self):
+    #     self.previous_objective = None
+    #     self.cumulative_increase = 0
+    #     self.step_count = 0
+    #     return super().reset()  
+
+
+
+
+
+
+
+    '''
+Module to shortly train an A2C agent for the bestest_hydronic_heatpump 
+case. This case needs to be deployed to run this script. This example is 
+rather used for testing to prove the use of a callback that monitors model
+performance and saves a model upon improved performance. 
+
+'''
+
+
+def train_DQN_with_callback(log_dir=os.path.join('results','DQN','Model2'),
+                            tensorboard_log= os.path.join('results','DQN','Model2')):
+    '''Method to train an A2C agent using a callback to save the model 
+    upon performance improvement.  
+    
+    Parameters
+    ----------
+    start_time_tests : list of integers
+        Time in seconds from the beginning of the year that will be used 
+        for testing. These periods should be excluded in the training 
+        process. By default the first day of February and the first day of
+        November are used. 
+    episode_length_test : integer
+        Number of seconds indicating the length of the testing periods. By
+        default two weeks are reserved for testing.  
+    log_dir : string
+        Directory where monitoring data and best trained model are stored.
+    tensorboard_log : path
+        Path to directory to load tensorboard logs.
+    
+    '''
+    
+    excluding_periods = []
+    # for start_time_test in start_time_tests:
+    #     excluding_periods.append((start_time_test,start_time_test+episode_length_test))
+    # Summer period (from June 21st till September 22nd). 
+    # Excluded since no heating during this period (nothing to learn).
+    excluding_periods.append((173*24*3600, 266*24*3600))  
+    
+    # Use only one hour episode to have more callbacks
+
+    env = BoptestGymEnvCustomReward(
+    url=url,
+    # testcase='singlezone_commercial_hydronic',
+    actions=['ahu_oveFanSup_u','oveValCoi_u','oveValRad_u'],
+    observations={
+        'reaTZon_y': (200., 400.),       # Current zone air temperature
+        'reaCO2Zon_y': (200., 2000.),    # Current zone CO2 concentration
+        'reaPFan_y':(0.,100000.),
+        'reaPPum_y':(0.,100000.),
+        'weaSta_reaWeaTDryBul_y':(250.,350.),
+        'weaSta_reaWeaWinSpe_y':(0.,100.)
+    },
+    scenario = {'electricity_price':'highly_dynamic'},
+    random_start_time=True,
+    max_episode_length=3*24*3600,
+    step_period=3600,
+    log_dir=tensorboard_log,
+    excluding_periods=excluding_periods     
+                            )
+
+   
+    
+    # env = NormalizedObservationWrapper(env)
+    # env = NormalizedActionWrapper(env)  
+    env = DiscretizedActionWrapper(env,n_bins_act=5)
+    os.makedirs(log_dir, exist_ok=True)
+    
+    # Modify the environment to include the callback
+    env = Monitor(env=env, filename=os.path.join(log_dir,'monitor.csv'))
+    
+    # Create the callback: check every 10 steps. We keep it very short for testing 
+    callback = SaveAndTestCallback(env=env, check_freq=48,save_freq=10000, log_dir=tensorboard_log)
+    
+    # Initialize the agent
+
+    # model = DQN(model_path)
+    model = DQN(
+        'MlpPolicy', 
+        env, 
+        verbose=1, 
+        gamma=0.98,  # Adjusted discount factor
+        learning_rate=1e-3,  # Increased learning rate
+        batch_size=128,  # Larger batch size
+        buffer_size=10000,  # Increased replay buffer size
+        learning_starts=1000,  # More steps before learning begins
+        train_freq=8,  # Train the model every 8 steps
+        gradient_steps=4,  # Number of gradient updates after each step
+        target_update_interval=500,  # Increase target network update interval
+        exploration_fraction=0.6,  # Faster exploration decay
+        exploration_initial_eps=1.0,
+        exploration_final_eps=0.01,  # Lower final exploration rate
+        tensorboard_log=tensorboard_log,
+    )
+    # model = SAC('MlpPolicy', env, verbose=1, gamma=0.99,
+    #                     learning_rate=3e-4, batch_size=96, ent_coef='auto',
+    #                     buffer_size=365*96, learning_starts=96, train_freq=1,
+    #                     tensorboard_log=log_dir)
+    # set up logger
+    new_logger = configure(log_dir, ['stdout', 'csv', 'tensorboard'])
+    model.set_logger(new_logger)
+
+    # Train the agent with callback for saving
+    model.learn(total_timesteps=int(500000), callback=callback)
+    
+    return env, model
+
+if __name__ == "__main__":
+    # model_path="/results/DQN/best_model.zip"
+    env, model = train_DQN_with_callback()
+    model.save("dqn_adrenalin1_mutiple_action_")
+    print("Training completed. Best model saved in results/monitored_DQN/")
+    print("TensorBoard logs saved in results/tensorboard_logs/")
+    

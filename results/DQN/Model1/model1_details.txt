@@ -1,0 +1,121 @@
+Model is tranined on 3m time stamps
+final loss is 0, loss plot looks good
+reward doesn;t look converger at this 3m steps reward looks around -3.5 
+
+Here is env which i used for this trainig
+
+Reward Function:- used custom reward Function, but the simple one ( reward  = -(currrent - prev) )
+
+Perfomance:- for peak heat day showed some good performance(0.000005 something),for typic heat day worser than baseline
+
+Things to notice
+- bins were 3 so it was only operating at 0,0.33,0.66
+- No forecase variable has been used
+- Loss function looks perfect it was 0 at the end of the training
+
+Training done on singlezone_commerical_hydronic
+
+
+def train_DQN_with_callback(log_dir=os.path.join('results','DQN'),
+                            tensorboard_log= os.path.join('results','DQN')):
+    '''Method to train an A2C agent using a callback to save the model 
+    upon performance improvement.  
+    
+    Parameters
+    ----------
+    start_time_tests : list of integers
+        Time in seconds from the beginning of the year that will be used 
+        for testing. These periods should be excluded in the training 
+        process. By default the first day of February and the first day of
+        November are used. 
+    episode_length_test : integer
+        Number of seconds indicating the length of the testing periods. By
+        default two weeks are reserved for testing.  
+    log_dir : string
+        Directory where monitoring data and best trained model are stored.
+    tensorboard_log : path
+        Path to directory to load tensorboard logs.
+    
+    '''
+    
+    # excluding_periods = []
+    # for start_time_test in start_time_tests:
+    #     excluding_periods.append((start_time_test,start_time_test+episode_length_test))
+    # # Summer period (from June 21st till September 22nd). 
+    # # Excluded since no heating during this period (nothing to learn).
+    # excluding_periods.append((173*24*3600, 266*24*3600))  
+    
+    # Use only one hour episode to have more callbacks
+
+    env = BoptestGymEnvCustomReward(
+    url=url,
+    # testcase='singlezone_commercial_hydronic',
+    actions=['ahu_oveFanSup_u','oveValCoi_u','oveValRad_u'],
+    observations={
+        'reaTZon_y': (200., 400.),       # Current zone air temperature
+        'reaCO2Zon_y': (200., 2000.),    # Current zone CO2 concentration
+        'reaPFan_y':(0.,100000.),
+        'reaPPum_y':(0.,100000.),
+        'weaSta_reaWeaTDryBul_y':(250.,350.),
+        'weaSta_reaWeaWinSpe_y':(0.,100.)
+    },
+    scenario = {'electricity_price':'highly_dynamic'},
+    random_start_time=True,
+    max_episode_length=7*24*3600,
+    step_period=3600,
+    log_dir=tensorboard_log     
+                            )
+
+   
+    
+    # env = NormalizedObservationWrapper(env)
+    # env = NormalizedActionWrapper(env)  
+    env = DiscretizedActionWrapper(env,n_bins_act=3)
+    os.makedirs(log_dir, exist_ok=True)
+    
+    # Modify the environment to include the callback
+    env = Monitor(env=env, filename=os.path.join(log_dir,'monitor.csv'))
+    
+    # Create the callback: check every 10 steps. We keep it very short for testing 
+    callback = SaveAndTestCallback(env=env, check_freq=48,save_freq=1000, log_dir=tensorboard_log)
+    
+    # Initialize the agent
+
+    # model = DQN(model_path)
+    model = DQN(
+        'MlpPolicy', 
+        env, 
+        verbose=1, 
+        gamma=0.98,  # Adjusted discount factor
+        learning_rate=1e-3,  # Increased learning rate
+        batch_size=128,  # Larger batch size
+        buffer_size=10000,  # Increased replay buffer size
+        learning_starts=1000,  # More steps before learning begins
+        train_freq=8,  # Train the model every 8 steps
+        gradient_steps=4,  # Number of gradient updates after each step
+        target_update_interval=500,  # Increase target network update interval
+        exploration_fraction=0.6,  # Faster exploration decay
+        exploration_initial_eps=1.0,
+        exploration_final_eps=0.01,  # Lower final exploration rate
+        tensorboard_log=tensorboard_log
+    )
+    # model = SAC('MlpPolicy', env, verbose=1, gamma=0.99, seed=seed, 
+    #                     learning_rate=3e-4, batch_size=96, ent_coef='auto',
+    #                     buffer_size=365*96, learning_starts=96, train_freq=1,
+    #                     tensorboard_log=log_dir)
+    # set up logger
+    new_logger = configure(log_dir, ['stdout', 'csv', 'tensorboard'])
+    model.set_logger(new_logger)
+
+    # Train the agent with callback for saving
+    model.learn(total_timesteps=int(500000), callback=callback)
+    
+    return env, model
+
+if __name__ == "__main__":
+    # model_path="/results/DQN/best_model.zip"
+    env, model = train_DQN_with_callback()
+    model.save("sac_adrenalin1_mutiple_action_")
+    print("Training completed. Best model saved in results/monitored_DQN/")
+    print("TensorBoard logs saved in results/tensorboard_logs/")
+    
