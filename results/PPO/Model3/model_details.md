@@ -1,11 +1,21 @@
-Model: PPO
-Simple reward function : reward = -(curr-prev)
-Got converged around -0.95
-Trained for around 1.2m steps
-Further work: Add Occupancy and forecasting constraint, Trained for more variable, Try with contionous actions
-This model trained with discrete action with bins=15
-for peak heat day 90k model is performing better than the 1.2m 
+# PPO Model: 111python
 
+### Model Summary:
+- **Model**: PPO
+- **Simple reward function**: `reward = -(curr-prev)`
+- **Convergence**: Got converged around `-0.95`
+- **Training**: Trained for around `1.2m steps`
+- **Further Work**:
+  - Add Occupancy and forecasting constraint
+  - Train for more variables
+  - Try with continuous actions
+- **Action Space**: Discrete actions with `bins=15`
+- **Performance**: For peak heat day, `90k` model is performing better than the `1.2m` model.
+- **Info**: model_ppo_90k if performing better than ppo_model_120000_latest_final
+
+### Python Code Implementation
+
+```python
 import os
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import CheckpointCallback
@@ -51,14 +61,13 @@ def train_PPO_with_callback(model_path=None,
     print(env.observation_space)
     # env = NormalizedObservationWrapper(env)
     # env = NormalizedActionWrapper(env)  
-    env = DiscretizedActionWrapper(env,n_bins_act=15)
-    os.makedirs(log_dir, exist_ok=True)
+    env = DiscretizedActionWrapper(env, n_bins_act=15)
     os.makedirs(log_dir, exist_ok=True)
     
     env = Monitor(env=env, filename=os.path.join(log_dir, 'monitor.csv'))
     
     # Callback to save model every 2000 steps
-    callback = SaveAndTestCallback(check_freq=48,save_freq=500,env=env,log_dir=tensorboard_log)
+    callback = SaveAndTestCallback(check_freq=48, save_freq=500, env=env, log_dir=tensorboard_log)
     
     # Set up logger with TensorBoard logging continuation
     new_logger = configure(log_dir, ['stdout', 'csv', 'tensorboard'])
@@ -92,7 +101,7 @@ def train_PPO_with_callback(model_path=None,
     return env, model
 
 if __name__ == "__main__":
-    model_path = "results/PPO/Model3/ppo_model_81000_latets.zip" # Update this with the correct path if needed
+    model_path = "results/PPO/Model3/ppo_model_81000_latest.zip"  # Update this with the correct path if needed
     env, model = train_PPO_with_callback(model_path=model_path)
     model.save(os.path.join('results', 'PPO', 'final_model'))
     print("Training completed. Model saved in results/PPO/")
