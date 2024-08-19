@@ -1,0 +1,147 @@
+{
+    "os": "Linux-6.5.0-44-generic-x86_64-with-glibc2.35",
+    "python": "3.10.11",
+    "heartbeatAt": "2024-08-19T14:11:17.701757",
+    "startedAt": "2024-08-19T14:11:16.130825",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "<python with no main file>",
+    "codePathLocal": null,
+    "git": {
+        "remote": "https://github.com/IamAniket12/HVAC_Local.git",
+        "commit": "95137ae825800aadd23a08fa0f109e3318de4dc5"
+    },
+    "email": "aniketdixit20143@gmail.com",
+    "root": "/home/aniket/Desktop/Codes/HVAC_Local",
+    "host": "aniket",
+    "username": "aniket",
+    "executable": "/home/aniket/miniconda3/envs/boptestlocal/bin/python",
+    "cpu_count": 14,
+    "cpu_count_logical": 20,
+    "cpu_freq": {
+        "current": 2.1339999999999995,
+        "min": 400.0,
+        "max": 4180.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2.435,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 4.216,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 0.4,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3.654,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 0.4,
+            "min": 400.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4.248,
+            "min": 400.0,
+            "max": 4700.0
+        },
+        {
+            "current": 3.614,
+            "min": 400.0,
+            "max": 4700.0
+        },
+        {
+            "current": 3.908,
+            "min": 400.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4.38,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3.602,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3.454,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 0.4,
+            "min": 400.0,
+            "max": 4600.0
+        },
+        {
+            "current": 2.583,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 2.435,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 0.4,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 0.4,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 0.399,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 0.4,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 0.952,
+            "min": 400.0,
+            "max": 3500.0
+        },
+        {
+            "current": 0.4,
+            "min": 400.0,
+            "max": 3500.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 467.8895797729492,
+            "used": 124.13359069824219
+        }
+    },
+    "gpu": "NVIDIA T600 Laptop GPU",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA T600 Laptop GPU",
+            "memory_total": 4294967296
+        }
+    ],
+    "memory": {
+        "total": 30.975601196289062
+    }
+}
