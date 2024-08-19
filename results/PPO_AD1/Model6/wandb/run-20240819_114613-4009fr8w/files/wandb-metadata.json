@@ -1,0 +1,211 @@
+{
+    "os": "Linux-5.4.0-189-generic-x86_64-with-glibc2.31",
+    "python": "3.10.11",
+    "heartbeatAt": "2024-08-19T10:46:14.204069",
+    "startedAt": "2024-08-19T10:46:13.235148",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "<python with no main file>",
+    "codePathLocal": null,
+    "git": {
+        "remote": "https://github.com/IamAniket12/HVAC_Local.git",
+        "commit": "d728b36f87ac0508daf102758732488ad2965170"
+    },
+    "email": "aniketdixit20143@gmail.com",
+    "root": "/home/dixita4/HVAC_Local",
+    "host": "Moore",
+    "username": "dixita4",
+    "executable": "/home/dixita4/miniconda3/envs/boptestlocal/bin/python",
+    "cpu_count": 16,
+    "cpu_count_logical": 32,
+    "cpu_freq": {
+        "current": 2841.2284375000004,
+        "min": 1200.0,
+        "max": 3700.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3251.622,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3181.73,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 1416.153,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 1414.744,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3400.0,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3396.944,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3399.388,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3396.041,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2568.818,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2336.49,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3228.231,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3183.108,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 1769.417,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3400.001,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3400.0,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3400.003,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2859.481,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3002.043,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 1919.222,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 1947.674,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3398.219,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3400.0,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3399.999,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3399.999,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2467.32,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2505.025,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3092.99,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3373.039,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 1831.014,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3399.996,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3400.0,
+            "min": 1200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3400.0,
+            "min": 1200.0,
+            "max": 3700.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 11081.079849243164,
+            "used": 1704.3101539611816
+        }
+    },
+    "gpu": "Quadro RTX 8000",
+    "gpu_count": 2,
+    "gpu_devices": [
+        {
+            "name": "Quadro RTX 8000",
+            "memory_total": 51539607552
+        },
+        {
+            "name": "Quadro RTX 8000",
+            "memory_total": 51539607552
+        }
+    ],
+    "memory": {
+        "total": 187.56357955932617
+    }
+}
