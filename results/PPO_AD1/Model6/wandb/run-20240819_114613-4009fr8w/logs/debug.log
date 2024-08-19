@@ -30,3 +30,35 @@ config: {'env': {'url': 'http://127.0.0.1:5000', 'actions': ['ahu_oveFanSup_u', 
 2024-08-19 11:46:17,513 INFO    MainThread:1750235 [wandb_init.py:init():891] run started, returning control to user process
 2024-08-19 11:46:19,979 INFO    MainThread:1750235 [wandb_watch.py:watch():51] Watching
 2024-08-19 11:46:19,982 INFO    MainThread:1750235 [wandb_run.py:_config_callback():1386] config_cb None None {'algo': 'PPO', 'policy_class': "<class 'stable_baselines3.common.policies.ActorCriticPolicy'>", 'policy_kwargs': '{}', 'num_timesteps': 0, '_total_timesteps': 1000000, '_num_timesteps_at_start': 0, 'seed': 'None', 'action_noise': 'None', 'start_time': 1724064379797748863, 'tensorboard_log': 'results/PPO_AD1/Model6', '_last_obs': '[[2.3222620e+07 2.9314999e+02 4.1867508e+02 2.8179474e+02 5.7610001e-02\n  4.9980000e-02 4.5960002e-02 4.1600000e-02 4.3960001e-02 4.1510001e-02\n  2.9414999e+02 2.8814999e+02 2.8814999e+02 2.8814999e+02 2.8814999e+02\n  2.8814999e+02 3.0314999e+02 3.0314999e+02 3.0314999e+02 3.0314999e+02\n  3.0314999e+02 3.0314999e+02 8.0000000e+02 8.0000000e+02 8.0000000e+02\n  8.0000000e+02 8.0000000e+02 8.0000000e+02]]', '_last_episode_starts': '[ True]', '_last_original_obs': 'None', '_episode_num': 0, 'use_sde': 'False', 'sde_sample_freq': -1, '_current_progress_remaining': 1.0, '_stats_window_size': 100, 'ep_info_buffer': 'deque([], maxlen=100)', 'ep_success_buffer': 'deque([], maxlen=100)', '_n_updates': 0, '_custom_logger': 'True', '_vec_normalize_env': 'None', 'observation_space': 'Box([  0.  200.  200.  250.   -0.4  -0.4  -0.4  -0.4  -0.4  -0.4 280.  280.\n 280.  280.  280.  280.  280.  280.  280.  280.  280.  280.    0.    0.\n   0.    0.    0.    0. ], [3.1536e+07 4.0000e+02 2.0000e+03 3.5000e+02 4.0000e-01 4.0000e-01\n 4.0000e-01 4.0000e-01 4.0000e-01 4.0000e-01 3.1000e+02 3.1000e+02\n 3.1000e+02 3.1000e+02 3.1000e+02 3.1000e+02 3.1000e+02 3.1000e+02\n 3.1000e+02 3.1000e+02 3.1000e+02 3.1000e+02 1.0000e+04 1.0000e+04\n 1.0000e+04 1.0000e+04 1.0000e+04 1.0000e+04], (28,), float32)', 'action_space': 'Box(0.0, 1.0, (3,), float32)', 'n_envs': 1, 'vf_coef': 0.5, 'max_grad_norm': 0.5, 'rollout_buffer_class': "<class 'stable_baselines3.common.buffers.RolloutBuffer'>", 'rollout_buffer_kwargs': '{}', 'clip_range_vf': 'None', 'normalize_advantage': 'True', 'target_kl': 'None', 'lr_schedule': '<function get_schedule_fn.<locals>.<lambda> at 0x7fda484d7880>', 'rollout_buffer': '<stable_baselines3.common.buffers.RolloutBuffer object at 0x7fda484e0be0>', 'policy': 'ActorCriticPolicy(\n  (features_extractor): FlattenExtractor(\n    (flatten): Flatten(start_dim=1, end_dim=-1)\n  )\n  (pi_features_extractor): FlattenExtractor(\n    (flatten): Flatten(start_dim=1, end_dim=-1)\n  )\n  (vf_features_extractor): FlattenExtractor(\n    (flatten): Flatten(start_dim=1, end_dim=-1)\n  )\n  (mlp_extractor): MlpExtractor(\n    (policy_net): Sequential(\n      (0): Linear(in_features=28, out_features=64, bias=True)\n      (1): Tanh()\n      (2): Linear(in_features=64, out_features=64, bias=True)\n      (3): Tanh()\n    )\n    (value_net): Sequential(\n      (0): Linear(in_features=28, out_features=64, bias=True)\n      (1): Tanh()\n      (2): Linear(in_features=64, out_features=64, bias=True)\n      (3): Tanh()\n    )\n  )\n  (action_net): Linear(in_features=64, out_features=3, bias=True)\n  (value_net): Linear(in_features=64, out_features=1, bias=True)\n)', '_logger': '<stable_baselines3.common.logger.Logger object at 0x7fda486ae6e0>'}
+2024-08-19 11:48:47,627 INFO    MainThread:1750235 [jupyter.py:save_ipynb():372] not saving jupyter notebook
+2024-08-19 11:48:47,628 INFO    MainThread:1750235 [wandb_init.py:_pause_backend():435] pausing backend
+2024-08-19 11:50:34,967 INFO    MainThread:1750235 [wandb_init.py:_resume_backend():440] resuming backend
+2024-08-19 11:50:34,979 INFO    MainThread:1750235 [jupyter.py:save_ipynb():372] not saving jupyter notebook
+2024-08-19 11:50:34,979 INFO    MainThread:1750235 [wandb_init.py:_pause_backend():435] pausing backend
+2024-08-19 11:50:37,560 INFO    MainThread:1750235 [wandb_init.py:_resume_backend():440] resuming backend
+2024-08-19 11:50:37,571 INFO    MainThread:1750235 [jupyter.py:save_ipynb():372] not saving jupyter notebook
+2024-08-19 11:50:37,571 INFO    MainThread:1750235 [wandb_init.py:_pause_backend():435] pausing backend
+2024-08-19 11:50:37,748 INFO    MainThread:1750235 [wandb_init.py:_resume_backend():440] resuming backend
+2024-08-19 11:50:37,752 INFO    MainThread:1750235 [jupyter.py:save_ipynb():372] not saving jupyter notebook
+2024-08-19 11:50:37,753 INFO    MainThread:1750235 [wandb_init.py:_pause_backend():435] pausing backend
+2024-08-19 11:50:38,260 INFO    MainThread:1750235 [wandb_init.py:_resume_backend():440] resuming backend
+2024-08-19 11:50:38,264 INFO    MainThread:1750235 [jupyter.py:save_ipynb():372] not saving jupyter notebook
+2024-08-19 11:50:38,264 INFO    MainThread:1750235 [wandb_init.py:_pause_backend():435] pausing backend
+2024-08-19 11:50:38,384 INFO    MainThread:1750235 [wandb_init.py:_resume_backend():440] resuming backend
+2024-08-19 11:50:38,389 INFO    MainThread:1750235 [jupyter.py:save_ipynb():372] not saving jupyter notebook
+2024-08-19 11:50:38,390 INFO    MainThread:1750235 [wandb_init.py:_pause_backend():435] pausing backend
+2024-08-19 11:50:38,432 INFO    MainThread:1750235 [wandb_init.py:_resume_backend():440] resuming backend
+2024-08-19 11:50:38,436 INFO    MainThread:1750235 [jupyter.py:save_ipynb():372] not saving jupyter notebook
+2024-08-19 11:50:38,436 INFO    MainThread:1750235 [wandb_init.py:_pause_backend():435] pausing backend
+2024-08-19 11:50:38,706 INFO    MainThread:1750235 [wandb_init.py:_resume_backend():440] resuming backend
+2024-08-19 11:50:38,711 INFO    MainThread:1750235 [jupyter.py:save_ipynb():372] not saving jupyter notebook
+2024-08-19 11:50:38,712 INFO    MainThread:1750235 [wandb_init.py:_pause_backend():435] pausing backend
+2024-08-19 11:50:38,781 INFO    MainThread:1750235 [wandb_init.py:_resume_backend():440] resuming backend
+2024-08-19 11:50:38,785 INFO    MainThread:1750235 [jupyter.py:save_ipynb():372] not saving jupyter notebook
+2024-08-19 11:50:38,785 INFO    MainThread:1750235 [wandb_init.py:_pause_backend():435] pausing backend
+2024-08-19 11:50:38,853 INFO    MainThread:1750235 [wandb_init.py:_resume_backend():440] resuming backend
+2024-08-19 11:50:38,858 INFO    MainThread:1750235 [jupyter.py:save_ipynb():372] not saving jupyter notebook
+2024-08-19 11:50:38,859 INFO    MainThread:1750235 [wandb_init.py:_pause_backend():435] pausing backend
+2024-08-19 11:50:39,623 INFO    MainThread:1750235 [wandb_init.py:_resume_backend():440] resuming backend
+2024-08-19 11:50:39,629 INFO    MainThread:1750235 [jupyter.py:save_ipynb():372] not saving jupyter notebook
+2024-08-19 11:50:39,629 INFO    MainThread:1750235 [wandb_init.py:_pause_backend():435] pausing backend
