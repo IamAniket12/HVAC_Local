@@ -227,3 +227,6 @@
 2024-08-19 11:47:47,512 DEBUG   SenderThread:1750637 [sender.py:send_request():418] send_request: stop_status
 2024-08-19 11:47:47,530 DEBUG   HandlerThread:1750637 [handler.py:handle_request():158] handle_request: internal_messages
 2024-08-19 11:47:47,708 DEBUG   HandlerThread:1750637 [handler.py:handle_request():158] handle_request: status_report
+2024-08-19 11:47:48,529 DEBUG   HandlerThread:1750637 [handler.py:handle_request():158] handle_request: internal_messages
+2024-08-19 11:47:48,910 INFO    Thread-12 :1750637 [dir_watcher.py:_on_file_modified():288] file/dir modified: results/PPO_AD1/Model6/wandb/run-20240819_114613-4009fr8w/files/output.log
+2024-08-19 11:47:49,529 DEBUG   HandlerThread:1750637 [handler.py:handle_request():158] handle_request: internal_messages
