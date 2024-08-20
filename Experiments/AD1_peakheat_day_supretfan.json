@@ -1,0 +1,80 @@
+{
+    "baseline": {
+      "KPIs": {
+        "cost_tot": 0.26333179357299513,
+        "emis_tot": 0.3835816361039315,
+        "ener_tot": 3.216796741203613,
+        "idis_tot": 5.423390226236728,
+        "pdih_tot": 0.08966856983946767,
+        "pele_tot": 0.004907797325142573,
+        "pgas_tot": null,
+        "tdis_tot": 7.995222085010505,
+        "time_rat": 3.0571904348496773e-06
+      },
+      "message": "Inputs = u={}"
+    },
+    "scenario_1": {
+      "KPIs": {
+        "cost_tot": 0.2633315670370198,
+        "emis_tot": 0.38358131682054764,
+        "ener_tot": 3.216794000194442,
+        "idis_tot": 5.423415089141491,
+        "pdih_tot": 0.08966844294594835,
+        "pele_tot": 0.004907791439045951,
+        "pgas_tot": null,
+        "tdis_tot": 7.995202250263876,
+        "time_rat": 0.0002389298552873904
+      },
+      "message": "Input = u = {\"ahu_oveFanRet_u\":1}"
+    },
+    "scenario_2": {
+      "KPIs": {
+        "cost_tot": 0.2633315670370198,
+        "emis_tot": 0.38358131682054764,
+        "ener_tot": 3.216794000194442,
+        "idis_tot": 5.423415089141491,
+        "pdih_tot": 0.08966844294594835,
+        "pele_tot": 0.004907791439045951,
+        "pgas_tot": null,
+        "tdis_tot": 7.995202250263876,
+        "time_rat": 6.006647768632445e-05
+      },
+      "message": "Input = u = {\"ahu_oveFanRet_u\":0.5}"
+    },
+    "comparison": {
+      "baseline_vs_scenario_1": {
+        "cost_tot": -0.00000022653597533,
+        "emis_tot": -0.00000031928338386,
+        "ener_tot": -0.00000274099017110,
+        "idis_tot": 0.00002486290476316,
+        "pdih_tot": -0.00000012689351932,
+        "pele_tot": -0.00000000588609662,
+        "pgas_tot": "No change",
+        "tdis_tot": -0.00001983474662926,
+        "time_rat": 0.00023587266485254
+      },
+      "scenario_1_vs_scenario_2": {
+        "cost_tot": 0.0,
+        "emis_tot": 0.0,
+        "ener_tot": 0.0,
+        "idis_tot": 0.0,
+        "pdih_tot": 0.0,
+        "pele_tot": 0.0,
+        "pgas_tot": "No change",
+        "tdis_tot": 0.0,
+        "time_rat": -0.00017886337760107
+      },
+      "baseline_vs_scenario_2": {
+      "cost_tot": 0.00000022653597533,
+      "emis_tot": 0.00000031928338386,
+      "ener_tot": 0.00000274099017110,
+      "idis_tot": 0.00002486290476316,
+      "pdih_tot": 0.00000012689351932,
+      "pele_tot": 0.00000000588609662,
+      "pgas_tot": "No change",
+      "tdis_tot": 0.00001983474662926,
+      "time_rat": 0.00005494954218412
+    }
+    }
+  }
+  

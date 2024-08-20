@@ -1,0 +1,47 @@
+{
+    "baseline": {
+      "KPIs": {
+        "cost_tot": 0.26333179357299513,
+        "emis_tot": 0.3835816361039315,
+        "ener_tot": 3.216796741203613,
+        "idis_tot": 5.423390226236728,
+        "pdih_tot": 0.08966856983946767,
+        "pele_tot": 0.004907797325142573,
+        "pgas_tot": null,
+        "tdis_tot": 7.995222085010505,
+        "time_rat": 3.0571904348496773e-06
+      },
+      "message": "Inputs = u={}"
+    },
+    "u_oveValRad_1.0": {
+      "KPIs": {
+        "cost_tot": 0.2633315670370198,
+        "emis_tot": 0.38358131682054764,
+        "ener_tot": 3.216794000194442,
+        "idis_tot": 5.423415089141491,
+        "pdih_tot": 0.08966844294594835,
+        "pele_tot": 0.004907791439045951,
+        "pgas_tot": null,
+        "tdis_tot": 7.995202250263876,
+        "time_rat": 0.0006321444478694093
+      },
+      "message": "Inputs = u={\"oveValRad_u\":1.0}"
+    },
+    "difference": {
+      "cost_tot": -0.00000022653597533,
+      "emis_tot": -0.00000031928338386,
+      "ener_tot": -0.000002741009171,
+      "idis_tot": 0.000024862904763,
+      "pdih_tot": -0.00000012689351932,
+      "pele_tot": -0.000000005886096622,
+      "pgas_tot": null,
+      "tdis_tot": -0.000019834746628,
+      "time_rat": 0.0006290872574345596
+    },
+    "summary": {
+      "general_trend": "Most KPIs show minimal differences, indicating a minor impact from the change.",
+      "notable_change": "The time ratio (`time_rat`) shows a significant increase, which suggests a major change in this metric.",
+      "null_values": "The `pgas_tot` KPI remains null in both cases, so no difference is applicable."
+    }
+  }
+  
