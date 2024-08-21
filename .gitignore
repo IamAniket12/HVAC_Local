@@ -2,3 +2,5 @@
 boptestGymEnv.py
 project1-boptest
 wandb
+*.zip
+*.csv
